@@ -158,6 +158,7 @@ for (let i = 0; i < 5; i++) {
 
     sumArr = arr11.concat(arr12);
     console.log(sumArr);
+    document.write('<pre>' + sumArr + '</pre>')
 }
 
     
