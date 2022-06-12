@@ -205,7 +205,8 @@ console.log('');
 
 let i = 0;
 function showArr11(arr) {
-    console.log(arr[i++]);
+    console.log(arr[i]);
+    i++;
     if (i < arr.length) showArr11(arr);
 }
 
@@ -289,8 +290,6 @@ card();*/
 /*function checkMail (mail) {
 
     let error = false,
-    latLet = false,
-    length = false;
     for (let i = 0; i < mail.length; i++)
 
     if (mail[i].charCodeAt() >= 1040 && mail[i].charCodeAt() <= 1103) error = true;
