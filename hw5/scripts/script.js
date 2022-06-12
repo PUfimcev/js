@@ -88,10 +88,10 @@ function changeArr(arr) {
 
     let arr1 = [];
     for (let i = 0; i < arr.length; i++) 
-        if (arr[i] % 2 == 0) arr1.push(arr[i]);
+        if (isEven(arr[i])) arr1.push(arr[i]);
     return console.log(arr1);
 }
-changeArr([2,4,3,5,7,8,86]);
+changeArr([2,4,3,5,6,7,8,86]);
 
 // 7 Task 
 
