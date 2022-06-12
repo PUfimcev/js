@@ -121,36 +121,36 @@ showPyramid();
 // 8 Task 
 
 function showFig(h) {
+    row = '';
     for (let i = 0; i < h; i++) {
         
-        rowEmp = '';
         for (let j = 1; j < h - i; j++) {
-            rowEmp += ' ';
+            row += ' ';
         }
     
-        rowSng = '';
         for (let j = 0; j < 2*i + 1; j++) {
-            rowSng += '*';
+            row += '*';
         }
-        console.log(rowEmp + rowSng + rowEmp);
+        console.log(row);
+        row = '';
     }
 }
 
 showFig(5);
 
 function showFigUpDown(h) {
+    row = '';
     for (let i = h; i> 0; i--) {
         
-        rowEmp = '';
         for (let j = 0; j < h - i; j++) {
-            rowEmp += ' ';
+            row += ' ';
         }
     
-        rowSng = '';
         for (let j = 2*i - 1; j > 0; j--) {
-            rowSng += '*';
+            row += '*';
         }
-        console.log(rowEmp + rowSng +  rowEmp);
+        console.log(row);
+        row = '';
     }
 }
 
