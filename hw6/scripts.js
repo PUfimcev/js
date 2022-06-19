@@ -246,3 +246,180 @@ console.log(matchStr ('aMna'));
 
 // 3. Напишите функцию alphabetOrder(str), которая возвращает переданную строку с буквами в алфавитном порядке. Пример строки: 'alphabetical'. Ожидаемый результат: 'aaabcehillpt'. Предположим, что символы пунктуации и цифры не включены в переданную строку.
 
+const alphabetOrder = function(str) {
+  str = str.split('').sort().join('');
+  return console.log(str);
+}
+
+alphabetOrder('adre');
+
+// 5. Напишите функцию, которая возвращает элементы массива, которые больше указанного числа. Нельзя использовать циклы for или while.
+
+let arr5 = [1, 3, 10, 15, 5, 67, 89];
+
+const newArr5 = function(num) {
+  let a = arr5.filter((item) => {
+    return item > num; 
+});
+  return console.log(a);
+};
+
+newArr5(10);
+
+// 6. Дан массив [1, 2, 3, 4, 5]. Написать рекурсивную функцию, которая выводит элементы массива в обратном порядке.
+
+let arr6 = [1, 2, 3, 4, 5];
+
+const arr6Rev = function(arr, i = arr.length-1) {
+  if (arr[i] == undefined) return;
+  console.log(arr[i]);
+  i--;
+    return arr6Rev(arr,i);  
+} 
+
+arr6Rev(arr6);
+
+// 7. Есть массив arr = [0, true, false, true, 1, true, true, false, "true", undefined, "1", null]. Необходимо написать функцию, которая вернет количество true (boolean) элементов.
+
+let arr7 = [0, true, false, true, 1, true, true, false, "true", undefined, "1", null];
+
+const getQuant = function(arr) {
+  let count = 0;
+  arr.forEach((item) => {
+  if (typeof item === 'boolean') {
+    return count++;
+  }
+});
+  return console.log(count);
+
+}
+getQuant(arr7);
+
+// 8. Нужно написать функцию, которая проверяет, являются ли две строки анаграммами, причем регистр букв не имеет значения. Учитываются лишь символы; пробелы или знаки препинания в расчет не берутся.
+
+const checkAnag = function (str1, str2) {
+    if (str1.length == str2.length && str1.split('').sort().join('') == str2.split('').sort().join('')) {
+      return console.log('Это анаграммы');
+    } else {
+      return console.log('Это не анаграммы');
+    }
+
+}
+
+checkAnag('napk dsr','pkna rad');
+
+// 9. Напишите функцию createArr(), которая создает массив, заполняемый "руками" (например, через prompt()), пока пользователь не введет пустую строку. Функция должна вернуть созданный массив.
+
+/*const createArr = function (item) {
+  let arr = [];
+
+  for (let i = 0;; i++) {
+    let query = prompt('Введите значения');
+    if (query == '') {
+      break; 
+    } else {
+      arr.push(query);
+    }
+  }
+  item(arr);
+}
+createArr(console.log);*/
+
+
+// 11. Сделайте функцию inArray, которая определяет, есть в массиве элемент с заданным значением или нет. Функция первым параметром должна принимать значение элемента, а вторым - массив, в котором делается поиск. Функция должна возвращать true или false. Нельзя пользоваться методами indexOf (или lastIndexOf), циклами for или while.
+
+const inArray = function(item, arr) {
+ console.log(arr.includes(item));
+}
+
+inArray('k',[1,2,4,5,7, 'k']);
+
+/*12. Перепишите код, заменив цикл for на метод map: let arr = ["Есть", "жизнь", "на", "Марсе"]; 
+
+const arrLength = [];
+for (let i = 0; i < arr.length; i++) {
+	arrLength.push(arr[i].length);
+}
+
+console.log(arrLength); // 4,5,2,5*/
+
+let arr12 = ["Есть", "жизнь", "на", "Марсе"]; 
+
+const arrLength = arr12.map((item) => {
+  item = item.length;
+  return item;
+
+}); 
+
+console.log(arrLength); 
+
+// 13. Есть 2 массива: arr1 = [1,2,3,4,5,6,7,8] и arr2 = [5, 3, 6, 9, 11]. Напишите функцию, которая принимает 2 массива и возвращает массив элементов, которые есть в обоих массивах. Решите задачу задачу двумя способами: используя оператор расширения; используя цикл.
+
+let arr13_1 = [1,2,3,4,5,6,7,8],
+    arr13_2 = [5, 3, 6, 9, 11];
+    
+const newArr = function(arr1, arr2) {
+  let arr13_3 = [...arr1, ...arr2];
+  return console.log(arr13_3);
+}
+
+newArr(arr13_1, arr13_2);
+
+
+const newArr2 = function(arr1, arr2) {
+
+  let a = [];
+  if (arr1.length > arr2.length) {
+    for (let i = 0; i < arr2.length; i++) {
+       arr1.push(arr2[i]);
+    }
+   a = arr1;
+   } else {
+      for (let i = 0; i < arr1.length; i++) {
+        arr2.push(arr1[i]);
+  }
+   a = arr2;
+}
+
+return console.log(a);
+ }
+
+
+
+newArr2(arr13_1, arr13_2);
+
+// 14. Напишите функцию copyArr(arr), которая копирует массив не изменяя оригинал. Скопируйте массив vegetables в новый, и добавьте в него любой элемент.
+
+// const vegetables = ['Капуста', 'Репа', 'Редиска', 'Морковка'];
+
+// Решите задачу задачу двумя способами: используя оператор расширения; используя цикл.
+
+
+const vegetables = ['Капуста', 'Репа', 'Редиска', 'Морковка'];
+
+const copyArr = function(arr, ...item) {
+  let vegetables2 = [...arr];
+  if (item[0] != undefined) {
+      vegetables2.push(item[0]);
+  }
+
+  return console.log(vegetables2);
+}
+
+copyArr(vegetables, 'Картофель')
+
+const copyArr2 = function(arr, ...item) {
+  let vegetables2 = [];
+  for (let i = 0; i < arr.length; i++) {
+    vegetables2.push(arr[i]);
+  }
+
+  if (item[0] != undefined) {
+      vegetables2.push(item[0]);
+  }
+
+  return console.log(vegetables2);
+}
+
+copyArr(vegetables, 'Картофель')
+
