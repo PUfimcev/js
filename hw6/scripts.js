@@ -237,21 +237,22 @@ revNumb(5675);
 // 2. Напишите функцию, которая проверяет, является ли переданная строка палиндромом.
 
 const matchStr = function(str) {
-    if (str.toLowerCase() == str.toLowerCase().split('').reverse().join('')) return true;
-     else return false;
 
+    str = str.toLowerCase().split(' ').join('');
+    if (str == str.split('').reverse().join('')) return true;
+     else return false;
 }
 
-console.log(matchStr ('aMna'));
+console.log(matchStr ('Лидер бредил'));
 
 // 3. Напишите функцию alphabetOrder(str), которая возвращает переданную строку с буквами в алфавитном порядке. Пример строки: 'alphabetical'. Ожидаемый результат: 'aaabcehillpt'. Предположим, что символы пунктуации и цифры не включены в переданную строку.
 
 const alphabetOrder = function(str) {
   str = str.split('').sort().join('');
-  return console.log(str);
+  return str;
 }
 
-alphabetOrder('adre');
+console.log(alphabetOrder('aalphabeticale'));
 
 // 5. Напишите функцию, которая возвращает элементы массива, которые больше указанного числа. Нельзя использовать циклы for или while.
 
@@ -261,10 +262,10 @@ const newArr5 = function(num) {
   let a = arr5.filter((item) => {
     return item > num; 
 });
-  return console.log(a);
+  return a;
 };
 
-newArr5(10);
+console.log(newArr5(10));
 
 // 6. Дан массив [1, 2, 3, 4, 5]. Написать рекурсивную функцию, которая выводит элементы массива в обратном порядке.
 
@@ -290,23 +291,26 @@ const getQuant = function(arr) {
     return count++;
   }
 });
-  return console.log(count);
+  return count;
 
 }
-getQuant(arr7);
+console.log(getQuant(arr7));
 
 // 8. Нужно написать функцию, которая проверяет, являются ли две строки анаграммами, причем регистр букв не имеет значения. Учитываются лишь символы; пробелы или знаки препинания в расчет не берутся.
 
 const checkAnag = function (str1, str2) {
-    if (str1.length == str2.length && str1.split('').sort().join('') == str2.split('').sort().join('')) {
-      return console.log('Это анаграммы');
-    } else {
-      return console.log('Это не анаграммы');
-    }
+    str1 = str1.toLowerCase().replace(/[, ]/g, '');
+    str2 = str2.toLowerCase().replace(/[, ]/g, '');
+    console.log(str1);
 
+    if (str1.length == str2.length && str1.split('').sort().join('') == str2.split('').sort().join('')) {
+      return 'Это анаграммы';
+    } else {
+      return 'Это не анаграммы';
+    }
 }
 
-checkAnag('napk dsr','pkna rad');
+console.log(checkAnag('слово','волос'));
 
 // 9. Напишите функцию createArr(), которая создает массив, заполняемый "руками" (например, через prompt()), пока пользователь не введет пустую строку. Функция должна вернуть созданный массив.
 
@@ -345,11 +349,7 @@ console.log(arrLength); // 4,5,2,5*/
 
 let arr12 = ["Есть", "жизнь", "на", "Марсе"]; 
 
-const arrLength = arr12.map((item) => {
-  item = item.length;
-  return item;
-
-}); 
+const arrLength = arr12.map((item) => item.length); 
 
 console.log(arrLength); 
 
