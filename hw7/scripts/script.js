@@ -96,10 +96,10 @@ console.log(str7.match(/ab+a/g));
 
 // 8. Напишите ф-цию строгой проверки ввода номер телефона в международном формате (<код страны> <код города или сети> <номер телефона>). Функция должна возвращать true или false. Используйте регулярные выражения.
 
-let numbPhone = '+375 (17) 366-45-45';
+let numbPhone = '+375 (29) 166-45-45';
 
 const validateNumber = function(number) {
-let regExp  = /\+\d{3}\s\(\d{2}\)\s\d{3}-\d{2}-\d{2}/g;
+let regExp  = /^\+375\s?\(?(17|29|33|44|25)\)?\s?[1-9]\d{2}[-\s]?\d{2}[-\s]?\d{2}/gm;
 
 return regExp.test(number);
 
@@ -148,7 +148,7 @@ console.log(validateEmail(email));
 const separAdr = function(adr){
     
     let adrName = 'https://tech.onliner.by/2018/04/26/smart-do-200/?utm_source=main_tile&utm_medium=smartdo200#zag3'; 
-    let domane = adrName.match(/[\w\/.:]+\.\w{2}/g);
+    let domane = adrName.match(/[\w\/.:_-]+\.\w{2,11}/g);
     let path = adrName.match(/\/[-\/\w]+\//g);
     let param = adrName.match(/\?[\w=&]+/g);
     let hash = adrName.match(/\#\w+/g);
