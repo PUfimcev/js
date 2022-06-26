@@ -161,3 +161,53 @@ const separAdr = function(adr){
 }
 
 separAdr(console.log);
+
+
+// Objects cotacts
+
+/*const Contacts = function() {
+
+    this.getContacts = function (){
+        this.name = prompt('Введите ФИО:');
+        this.age = prompt('Сколько лет?');
+        this.phone = prompt('Ведите номер контактного телефона:');
+        this.email = prompt('Ведите email:');
+        this.validateNumber();
+    }
+
+    this.validateNumber = function() {
+        let regExp  = /^\+375\s?\(?(17|29|33|44|25)\)?\s?[1-9]\d{2}[-\s]?\d{2}[-\s]?\d{2}/gm;
+        if (regExp.test(this.phone)) {
+            this.validateEmail();
+        } else {
+            alert(`Неправильно введен номер телефона. Повторите действия.`);
+            this.getContacts();
+        }
+        }
+
+    this.validateEmail = function() {
+            let regExp  = /^\D[a-zA-Z0-9_-]{2,}@[\w-]{2,11}\.[\w]{2,11}$/gi;
+            if (regExp.test(this.email)) {
+                this.present();
+            } else {
+                alert(`Неправильно введен адрес эл.почт. Повторите действия.`);
+                this.getContacts();
+            }
+            }
+
+    this.present = function(){
+        document.write( `Имя: ${this.name}. <br/>
+                         Возраст: ${this.age}. <br/>
+                         Контактный телефон: ${this.phone}.  <br/>
+                         Адрес эл.почты: ${this.email}. <br/> 
+                         <br/> `);
+    }
+
+}
+
+let user = new Contacts();
+    user.getContacts();
+    user.getContacts();
+    // user.getContacts();*/
+
+
