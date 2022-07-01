@@ -165,7 +165,7 @@ separAdr(console.log);
 
 // Objects cotacts
 
-/*const Contacts = function() {
+const Contacts = function() {
 
     this.getContacts = function (){
         this.name = prompt('Введите ФИО:');
@@ -195,6 +195,9 @@ separAdr(console.log);
             }
             }
 
+            
+
+
     this.present = function(){
         document.write( `Имя: ${this.name}. <br/>
                          Возраст: ${this.age}. <br/>
@@ -208,6 +211,7 @@ separAdr(console.log);
 let user = new Contacts();
     user.getContacts();
     user.getContacts();
-    // user.getContacts();*/
+    // user.getContacts();
 
 
+ 
