@@ -123,7 +123,6 @@ window.addEventListener('load', function() {
             check.setAttribute('type', 'checkbox');
             check.setAttribute('id', 'checkbox');
         let label = document.createElement('label');
-            label.setAttribute('for', 'checkbox');
             label.classList.add('label');
 
             li.appendChild(label);
