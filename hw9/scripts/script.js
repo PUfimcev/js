@@ -54,8 +54,7 @@ window.addEventListener('load', function() {
         }
 
         li {
-            display: flex;
-            justify-content: flex-start;
+            
             padding: 20px 0;
             padding-left: 20px;
             border-top: 1px solid #000;
@@ -65,17 +64,18 @@ window.addEventListener('load', function() {
             border-bottom: 1px solid #000;
         }
         .label {
-            flex: 2;
-            padding-left: 35px;
-            text-align: left;
+            display: flex;
+            justify-content: flex-start;
+            // text-align: left;
         }
         
         .text_task {
             text-transform: uppercase;
             font-weight: bold;
+            padding-left: 35px;
         }
 
-        #checkbox:checked + label {
+        #checkbox:checked +  .text_task {
             text-decoration: line-through;
             color: red;
         }
@@ -92,7 +92,7 @@ window.addEventListener('load', function() {
         }`;
 
         document.head.appendChild(style);
-        
+
 
     let list = document.createElement('div');
         list.classList.add('list');
@@ -126,21 +126,23 @@ window.addEventListener('load', function() {
             label.setAttribute('for', 'checkbox');
             label.classList.add('label');
 
-            li.appendChild(check);
             li.appendChild(label);
+            label.appendChild(check);
             label.appendChild(span);
 
-            if (document.querySelector('.form__getTask').value) {
+            
+            if (document.querySelector('.form__getTask').value != '') {
                 return task.appendChild(li);
             } else {
                 return;
             }
-      
-    };
-    
+            
+        };
+
+        
     getTask.addEventListener('click',newTask);
     getTask.addEventListener('change',newTask);
-        
+    
 
     /* Кнопка удаления списка  */
 
