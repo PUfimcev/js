@@ -1,0 +1,123 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    }
+
+    html, body {
+        height: 100vp;
+        font-family: Arial;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .list {
+        width: 300px;
+        background-color: #ccc;
+        margin-top: 100px;
+        border-radius: 2px;
+        overflow: hidden;
+        box-shadow: 0 0 15px 2px #a79fa6;
+    }
+
+    .list__header {
+        font-size: 24px;
+        letter-spacing: 1px;
+        background-color: #47cf12;
+        padding: 10px 0;
+    }
+
+    .list__getTask {
+        width: 95%;
+        height: 40px;
+        padding-left: 5px;
+        margin: 5px auto;
+        outline: none;
+    }
+
+    .list__getTask::placeholder {
+        font-size: 16px;
+        font-style: italic;
+        padding-left: 15px;
+    }
+
+    li {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+        list-style: none;
+        border-top: 1px solid #000;
+        cursor: pointer;
+    }
+    
+    li:last-child {
+        border-bottom: 1px solid #000;
+    }
+
+    .text_task {
+        display: block;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 20px 0;
+        text-align: left;
+        
+    }
+
+    li::before {
+        content: '';
+        padding: 20px;
+    }
+
+    li.checked .del_task {
+        text-decoration: none; 
+        color: #000; 
+    } 
+
+    li.checked {
+        text-decoration: line-through; 
+        color: red; 
+        background-color:  #FBC52B;
+    } 
+
+
+    li.checked:hover {
+        background-color:  #d2a324;
+    } 
+
+    li.checked::before {
+        content: '';
+        background-image: url('../pictures/tick.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 20px;
+      }
+
+    li:hover {
+        background-color:  #8f8a8e;
+    } 
+
+    .del_task {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 20px;
+    }
+
+    .del_task:hover {
+        color: #fff; 
+        background-color:  #f44336;
+    }
+
+    .bnt__delete {
+        background-color: #FBC52B;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 5px 10px;
+        margin: 10px auto;
+        border: #FBC52B;
+        border-radius: 5px;
+        cursor: pointer;
+    }

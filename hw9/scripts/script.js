@@ -1,168 +1,76 @@
 window.addEventListener('load', function() {
-
-    console.log(document.querySelector('body'));
-
-    let style = document.createElement('style');
-        style.innerHTML = `
-        * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100vp;
-            font-family: Arial;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .list {
-            width: 300px;
-            background-color: #ccc;
-            margin-top: 100px;
-            border-radius: 2px;
-            overflow: hidden;
-            box-shadow: 0 0 15px 2px #a79fa6;
-        }
-
-        .list__header {
-            font-size: 24px;
-            letter-spacing: 1px;
-            background-color: #47cf12;
-            padding: 10px 0;
-        }
-
-        .form__getTask {
-            width: 95%;
-            height: 40px;
-            padding-left: 5px;
-            margin: 5px auto;
-            outline: none;
-        }
-
-        .form__getTask::placeholder {
-            font-size: 16px;
-            font-style: italic;
-            padding-left: 15px;
-        }
-
-        .form__checkbox {
-            background-color: #47cf12;
-
-        }
-
-        li {
-            
-            padding: 20px 0;
-            padding-left: 20px;
-            border-top: 1px solid #000;
-        }
-        
-        li:last-child {
-            border-bottom: 1px solid #000;
-        }
-        .label {
-            display: flex;
-            justify-content: flex-start;
-            // text-align: left;
-        }
-        
-        .text_task {
-            text-transform: uppercase;
-            font-weight: bold;
-            padding-left: 35px;
-        }
-
-        #checkbox:checked +  .text_task {
-            text-decoration: line-through;
-            color: red;
-        }
-
-        .bnt__reset {
-            background-color: #FBC52B;
-            text-transform: uppercase;
-            font-weight: bold;
-            padding: 5px 10px;
-            margin: 10px auto;
-            border: #FBC52B;
-            border-radius: 5px;
-            cursor: pointer;
-        }`;
-
-        document.head.appendChild(style);
-
-
-    let list = document.createElement('div');
-        list.classList.add('list');
-        document.body.insertBefore(list, document.querySelector('script'));
-
-    let header = document.createElement('h3');
-        header.innerHTML = 'ToDoList';
-        header.classList.add('list__header');
-        list.appendChild(header);
-        
-    let getTask = document.createElement('input');
-        getTask.setAttribute('type', 'text');
-        getTask.classList.add('form__getTask');
-        getTask.setAttribute('name', 'get');
-        getTask.setAttribute('placeholder', 'Type your task...');
-        list.appendChild(getTask);
-        
-    let task = document.createElement('ul');
-        task.classList.add('form__task');
-        list.appendChild(task);
         
     const newTask = function(){
+
+        let getTask = document.querySelector('.list__getTask');
+
+        let listTasks = document.querySelector('.list__tasks');
+
+        let length = listTasks.children.length;
+
         let li = document.createElement('li');
-        let span = document.createElement('span');
-            span.classList.add('text_task');
-            span.innerHTML = document.querySelector('.form__getTask').value;
-        let check = document.createElement('input');
-            check.setAttribute('type', 'checkbox');
-            check.setAttribute('id', 'checkbox');
-        let label = document.createElement('label');
-            label.classList.add('label');
 
-            li.appendChild(label);
-            label.appendChild(check);
-            label.appendChild(span);
+        let task = document.createElement('span');
+        task.classList.add('text_task');
+        task.innerHTML = getTask.value;
 
+        let  delTask = document.createElement('span');
+        delTask.classList.add('del_task');
+        delTask.innerHTML = '\u00D7'
+
+        li.append(task,delTask);
+        
+        if (getTask.value != '') {
+            listTasks.append(li);
+            li.addEventListener('dblclick', editTask);
+            li.addEventListener('click', function(){
+                this.classList.toggle('checked');
+            });
+            getTask.value = '';
             
-            if (document.querySelector('.form__getTask').value != '') {
-                return task.appendChild(li);
-            } else {
-                return;
-            }
-            
+        } else {
+            return;
         };
 
-        
+        delTask.addEventListener('click', function() {
+            let bntDel = document.querySelector('.bnt__delete');
+            let length = listTasks.children.length;
+            li.remove();
+            if (length == 1) {
+                bntDel.remove();
+            }
+        })
+
+        length = listTasks.children.length;
+
+        if (length == 1) {
+            bntDel();
+        };
+    };
+
+    let getTask = document.querySelector('.list__getTask');
     getTask.addEventListener('click',newTask);
     getTask.addEventListener('change',newTask);
-    
 
-    /* Кнопка удаления списка  */
+    const editTask = function() {
+        let li = this;
+        let task =  li.querySelector('span');
+        let newTask = prompt('Изменить задачу:', task.innerHTML);
+        if (!newTask || newTask.length == 0) return;
+        task.innerHTML = newTask; 
+    }
 
-    let bntReset  = document.createElement('button');
-        bntReset.innerHTML = 'Reset list';
-        bntReset.classList.add('bnt__reset');
-        list.insertBefore(bntReset, task);
+    const bntDel = function () {
+    let listTasks = document.querySelector('.list__tasks');
+    let bntDel  = document.createElement('button');
+    bntDel.innerHTML = 'Delete list';
+    bntDel.classList.add('bnt__delete');
+    listTasks.after(bntDel);
 
-        bntReset.addEventListener('click', function() {
-        li = task.querySelectorAll('li');
-        li.forEach(function(elem){
-            elem.style.display = "none";
-        });
+    bntDel.addEventListener('click', function() {
+        listTasks.innerHTML = '';
+        this.remove();
     });
+    };
 
-    /*  Поскольку не смог получить псевдомассив Li попытался реализовать корректировку задач таким образом -- как пример  */
-
-    let correctTask = document.querySelector('.list__header');
-    correctTask.addEventListener('dblclick', function(){
-                let a = prompt('Введите изменения назавания:');
-                this.innerHTML = a;
-    });
-    
 });
