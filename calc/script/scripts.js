@@ -51,21 +51,8 @@ let Calc = function() {
     let key0 = document.querySelector('.key0');
     key0.addEventListener('click', addNumber);
 
-    numb1 = showNumb.innerHTML;
-    console.log(numb1);
-    a = this.innerHTML;
-    console.log(a);
-
-    // showNumb.innerHTML = '';
-    // numb2 = showNumb.innerHTML;
-    // console.log(numb2);
-
-
    this.setOperation = function(){
     numb1 = showNumb.innerHTML;
-    console.log(numb1);
-    a = this.innerHTML;
-    console.log(a);
    
     switch(true) {
         case this.innerHTML == '+':
@@ -116,24 +103,15 @@ let Calc = function() {
         });
     };
 
-
     if (showNumb.innerHTML) {
         return this.clear();
     } else {
         return;
     }
 
-
-
-
-
 };
 
 let calc = new Calc();
-
-
-
-
 
 });
 
