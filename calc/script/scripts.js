@@ -3,16 +3,16 @@ window.addEventListener('load', function() {
 let Calc = function() {
 
     let showNumb = document.querySelector('.calc__screen');
-    showNumb.innerHTML = '0';
+    showNumb.innerHTML = '';
     let showNumbLength = showNumb.innerHTML.length;
 
-    let numb1 = 0;
-    let numb2 = 0;
+    let numb1 = null;
+    let numb2 = null;
     let result = 0;
 
     let addNumber = function(){
 
-        if (showNumb.innerHTML == '0') showNumb.innerHTML = '';
+        // if (showNumb.innerHTML == '0') showNumb.innerHTML = '';
 
         if (showNumbLength < 16) {
             return showNumb.innerHTML += this.innerHTML;
@@ -21,94 +21,130 @@ let Calc = function() {
         }
     };
 
-    let key1 = document.querySelector('.key1');
-    key1.addEventListener('click', addNumber);
+    // Получение цифры
 
-    let key2 = document.querySelector('.key2');
-    key2.addEventListener('click', addNumber);
-
-    let key3 = document.querySelector('.key3');
-    key3.addEventListener('click', addNumber);
-
-    let key4 = document.querySelector('.key4');
-    key4.addEventListener('click', addNumber);
-
-    let key5 = document.querySelector('.key5');
-    key5.addEventListener('click', addNumber);
-
-    let key6 = document.querySelector('.key6');
-    key6.addEventListener('click', addNumber);
-
-    let key7 = document.querySelector('.key7');
-    key7.addEventListener('click', addNumber);
-
-    let key8 = document.querySelector('.key8');
-    key8.addEventListener('click', addNumber);
-
-    let key9 = document.querySelector('.key9');
-    key9.addEventListener('click', addNumber);
-
-    let key0 = document.querySelector('.key0');
-    key0.addEventListener('click', addNumber);
-
-   this.setOperation = function(){
-    numb1 = showNumb.innerHTML;
-   
-    switch(true) {
-        case this.innerHTML == '+':
-            result = +numb1 + +numb1;
-            console.log(result);
-        break;
-        case this.innerHTML == '-':
-            result = +numb1 - +numb1;
-            console.log(result);
-        break;
-        case this.innerHTML == '*':
-            result = +numb1 * +numb1;
-            console.log(result);
-        break;
-        case this.innerHTML == '/':
-            result = +numb1 / +numb1;
-            console.log(result);
-        break;
-        default:
-            result = '0';
-    }
-
-    };
-   
-    let div = document.querySelector('.keyDiv');
-    div.addEventListener('click', this.setOperation);
-    
-    let mult = document.querySelector('.keyMult');
-    mult.addEventListener('click', this.setOperation);
-    
-    let add = document.querySelector('.keyAdd');
-    add.addEventListener('click', this.setOperation);
-    
-    let subt = document.querySelector('.keySubt');
-    subt.addEventListener('click', this.setOperation);
-    
-
-    let bntKeyResult = document.querySelector('.keyResult');
-    bntKeyResult.addEventListener('click', function() { 
-        return showNumb.innerHTML = result;
-    });
-
-    this.clear = function(){
-        let bntClear = document.querySelector('.keyClear'); 
-        bntClear.addEventListener('click', function() { 
-            let showNumb = document.querySelector('.calc__screen');
-            return showNumb.innerHTML = '0';
+    const number = function () {
+        let exp = document.querySelectorAll('.keys_figers');
+        exp.forEach(element => {
+            element.addEventListener('click', addNumber);
         });
     };
 
-    if (showNumb.innerHTML) {
-        return this.clear();
-    } else {
+    number();
+
+    // Десятичная дробь
+    
+    const dec = function () {
+        let dec = document.querySelector('.dec');
+        dec.addEventListener('click', function() {
+            if (showNumb.innerHTML.indexOf('.') != -1) { return false;
+            } else {
+                return showNumb.innerHTML += this.innerHTML;
+            }
+        });
+    };
+
+    dec();
+
+    // Клавиша удаления
+
+    const del = function () {
+        let del = document.querySelector('.keyDel');
+        del.addEventListener('click', function() {
+            showNumb.innerHTML = showNumb.innerHTML.slice(0, showNumbLength - 1);
+            return showNumb.innerHTML;
+        });
+    };
+
+    del();
+
+    // Противоположное занчение
+
+    const oppose = function () {
+        let neg = document.querySelector('.keyNeg');
+        neg.addEventListener('click', function() {
+            showNumb.innerHTML = +showNumb.innerHTML * -1;
+            return showNumb.innerHTML;
+        });
+    };
+
+    oppose();
+
+    // Процент числа
+
+    const percent = function () {
+        let per = document.querySelector('.keyPerc');
+        per.addEventListener('click', function() {
+            showNumb.innerHTML = +showNumb.innerHTML / 100;
+            return showNumb.innerHTML;
+        });
+    };
+
+    percent();
+
+    // Проведение вычисления
+
+   const setOperation = function(){
+
+    if (numb1 === null) {
+        numb1 = showNumb.innerHTML;
+        oper = this.innerHTML;
+        showNumb.innerHTML = '';
         return;
     }
+    
+    if (numb1 !== null && numb2 === null) {
+        numb2 = showNumb.innerHTML;
+    }
 
+    switch(true) {
+        case oper == '+':
+            result = +numb1 + +numb2;
+        break;
+        case oper == '-':
+            result = +numb1 - +numb2;
+        break;
+        case oper == '*':
+            result = +numb1 * +numb2;
+        break;
+        case oper == '/':
+            result = +numb1 / +numb2;
+        break;
+    }
+    return;
+    };
+
+    const operation = function () {
+        let exp = document.querySelectorAll('.keys_exp');
+        exp.forEach(element => {
+            element.addEventListener('click', setOperation);
+        });
+    };
+
+    operation();
+
+    // Показать результат
+
+    const showResult = function() {
+    let bntKeyResult = document.querySelector('.keyResult');
+    bntKeyResult.addEventListener('click', function () { 
+        setOperation();
+        return  showNumb.innerHTML = result;
+    });
+    };
+
+    showResult();
+
+    // Очистить поле
+
+    const clear = function(){
+        let bntClear = document.querySelector('.keyClear'); 
+        bntClear.addEventListener('click', function() { 
+            location.reload();
+        });
+    };
+
+    clear();
 };
 
 let calc = new Calc();
